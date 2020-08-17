@@ -1,6 +1,12 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class AddTodo extends Component {
+
+  static propTypes = {
+    addTodo: PropTypes.func.isRequired,
+  }
+
   state = {
     todo: "",
   };
@@ -19,8 +25,8 @@ class AddTodo extends Component {
     } else {
       this.props.addTodo(this.state.todo);
       this.setState({
-          todo: ''
-      })
+        todo: "",
+      });
     }
   };
 

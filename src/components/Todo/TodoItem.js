@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 export class TodoItem extends Component {
   static propTypes = {
     todoItem: PropTypes.object.isRequired,
+    markComplete: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
   };
 
   getTodoItemStyle = () => {

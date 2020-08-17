@@ -10,15 +10,16 @@ import axios from "axios";
 
 class App extends Component {
   state = {
-    todos: [
-    ],
+    todos: [],
   };
 
   async componentDidMount() {
-    const response = await axios.get("https://jsonplaceholder.typicode.com/todos?_limit=10")
+    const response = await axios.get(
+      "https://jsonplaceholder.typicode.com/todos?_limit=10"
+    );
     this.setState({
-      todos: response.data
-    })
+      todos: response.data,
+    });
   }
 
   markComplete = (id) => {
@@ -32,23 +33,27 @@ class App extends Component {
     });
   };
 
-  deleteTodo = (id) => {
+  deleteTodo = async (id) => {
+    const response = await axios.delete(
+      `https://jsonplaceholder.typicode.com/todos/${id}`
+    );
+
     this.setState({
       todos: [...this.state.todos.filter((todo) => todo.id !== id)],
     });
   };
 
-  addTodo = (todoTitle) => {
-    
+  addTodo = async (todoTitle) => {
+    const response = await axios.post(
+      "https://jsonplaceholder.typicode.com/todos",
+      {
+        title: todoTitle,
+        completed: false,
+      }
+    );
+
     this.setState({
-      todos: [
-        ...this.state.todos,
-        {
-          id: uuid.v4(),
-          title: todoTitle,
-          completed: false,
-        },
-      ],
+      todos: [...this.state.todos, response.data],
     });
   };
 

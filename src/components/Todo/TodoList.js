@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 export class TodoList extends Component {
   static propTypes = {
     todoList: PropTypes.array.isRequired,
+    markComplete: PropTypes.func.isRequired,
+    deleteTodo: PropTypes.func.isRequired,
   };
   render() {
     return (
